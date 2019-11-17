@@ -10,9 +10,9 @@ const sign = function (body) {
 let server = http.createServer(function (req, res) {
     console.log(req.method, req.url);
     if (req.method === 'POST' && req.url === '/webhook') {
-        let buffers = []
+        let buffers = [];
         req.on('data', function (buffer) {
-            buffers.push(buffer)
+            buffers.push(buffer);
         });
         req.on('end', function (buffer) {
             let body = Buffer.concat(buffers)
@@ -21,7 +21,7 @@ let server = http.createServer(function (req, res) {
             if (signature !== sign(body)) {
                 res.end('Not Allowed');
             }
-            res.setHeader('Content-Type', 'application/json')
+            // res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({
                 ok: true
             }));
