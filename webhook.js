@@ -30,7 +30,7 @@ let server = http.createServer(function (req, res) {
                 // 拿到完整的返回体
                 let payload = JSON.parse(body);
                 // 使用子进程来执行这个命令：sh ./xxx.sh
-                let child = spawn('sh', [`./${body.repository.name}.sh`]);
+                let child = spawn('sh', [`./${payload.repository.name}.sh`]);
                 let buffers = []
                 // 打印日志
                 child.stdout.on('data', function(buffer){
