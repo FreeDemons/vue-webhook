@@ -15,7 +15,7 @@ let server = http.createServer(function (req, res) {
             buffers.push(buffer)
         });
         req.on('end', function (buffer) {
-            let body = Buffer.concat(buffer)
+            let body = Buffer.concat(buffers)
             const event = req.headers['x-github-event']; // 表示git的什么事件
             const signature = req.headers['x-github-signature'];
             if (signature !== sign(body)) {
@@ -34,7 +34,7 @@ let server = http.createServer(function (req, res) {
                 let buffers = []
                 // 打印日志
                 child.stdout.on('data', function(buffer){
-                    buffers.push(buffer)
+                    buffers.push(buffers)
                 });
                 child.stdout.on('end', function(buffer){
                     let log = Buffer.concat(buffers)
