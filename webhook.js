@@ -34,10 +34,10 @@ let server = http.createServer(function (req, res) {
                 let buffers = [];
                 // 打印日志
                 child.stdout.on('data', function(buffer){
-                    buffers.push(buffer)
+                    buffers.push(buffer);
                 });
                 child.stdout.on('end', function(buffer){
-                    let log = Buffer.concat(buffers)
+                    let log = Buffer.concat(buffers).toString();
                     console.log(log);
                 })
 
