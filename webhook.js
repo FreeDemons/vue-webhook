@@ -1,6 +1,6 @@
 let http = require('http')
 let crypto = require('crypto')
-let spawn = require('child_process')
+let {spawn} = require('child_process')
 const SECRET = '123456'
 const sign = function (body) {
     // github 的加密算法
@@ -31,10 +31,10 @@ let server = http.createServer(function (req, res) {
                 let payload = JSON.parse(body);
                 // 使用子进程来执行这个命令：sh ./xxx.sh
                 let child = spawn('sh', [`./${payload.repository.name}.sh`]);
-                let buffers = []
+                let buffers = [];
                 // 打印日志
                 child.stdout.on('data', function(buffer){
-                    buffers.push(buffers)
+                    buffers.push(buffer)
                 });
                 child.stdout.on('end', function(buffer){
                     let log = Buffer.concat(buffers)
