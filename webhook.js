@@ -15,7 +15,7 @@ let server = http.createServer(function (req, res) {
             buffers.push(buffer)
         });
         req.on('end', function (buffer) {
-            let body = buffers.concat(buffer)
+            let body = Buffer.concat(buffer)
             const event = req.headers['x-github-event']; // 表示git的什么事件
             const signature = req.headers['x-github-signature'];
             if (signature !== sign(body)) {
