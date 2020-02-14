@@ -13,4 +13,4 @@ echo "停止旧容器并删除旧容器"
 docker stop qixi-container
 docker rm qixi-container
 echo "启动新容器"
-docker container run -p 7777:7777 --name qixi-container -d qixi:2.0
+docker container run -p 7777:7777 --name qixi-container -d qixi:1.0
